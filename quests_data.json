@@ -1,0 +1,121 @@
+{
+  "quests": [
+    {
+      "id": 1,
+      "name": "Variabel & Tipe Data",
+      "rank": "F",
+      "xp": 20,
+      "prereq": null,
+      "hint": "Variabel = wadah nilai. Coba: nama = 'Kaito' lalu print(type(nama)). Eksperimen ganti isinya dengan int, float, bool. Perhatikan apa yang berubah dari type()-nya.",
+      "boss": false
+    },
+    {
+      "id": 2,
+      "name": "Operator & Ekspresi",
+      "rank": "F",
+      "xp": 20,
+      "prereq": 1,
+      "hint": "Operator: + - * / // % ** dan perbandingan == != < >. Coba kombinasikan angka dan lihat bedanya / dengan //. Bandingkan juga hasil 2==2.0.",
+      "boss": false
+    },
+    {
+      "id": 3,
+      "name": "Percabangan (if/elif/else)",
+      "rank": "E",
+      "xp": 30,
+      "prereq": 2,
+      "hint": "if pengambil keputusan. Coba buat program tebak angka sederhana: if tebakan > angka: ... elif tebakan < angka: ... else: .... Perhatikan indentasi, itu aturan wajib di Python.",
+      "boss": false
+    },
+    {
+      "id": 4,
+      "name": "Perulangan (for & while)",
+      "rank": "E",
+      "xp": 30,
+      "prereq": 3,
+      "hint": "for untuk iterasi terhitung, while untuk kondisi. Coba: for i in range(5): print(i). Lalu buat while loop yang berhenti kalau input user 'stop'. Cari tahu bedanya break dan continue.",
+      "boss": false
+    },
+    {
+      "id": 5,
+      "name": "List & Tuple",
+      "rank": "D",
+      "xp": 35,
+      "prereq": 4,
+      "hint": "List itu party-mu: bisa diubah, ditambah, diurutkan. Coba .append(), .remove(), slicing [1:3], dan len(). Tuple mirip list tapi immutable — coba ubah isinya dan lihat errornya.",
+      "boss": false
+    },
+    {
+      "id": 6,
+      "name": "Dictionary & Set",
+      "rank": "D",
+      "xp": 35,
+      "prereq": 5,
+      "hint": "Dictionary = key-value, seperti item dengan stat masing-masing. Coba karakter = {'nama':'Kaito','hp':100}. Akses lewat karakter['hp']. Set berguna untuk data unik tanpa duplikat.",
+      "boss": false
+    },
+    {
+      "id": 7,
+      "name": "Fungsi",
+      "rank": "C",
+      "xp": 40,
+      "prereq": 6,
+      "hint": "Fungsi = skill yang bisa dipanggil ulang. def serang(nama, damage=10): return f'{nama} menyerang {damage} damage'. Coba parameter default, *args, dan return value.",
+      "boss": false
+    },
+    {
+      "id": 8,
+      "name": "String Manipulation",
+      "rank": "C",
+      "xp": 40,
+      "prereq": 7,
+      "hint": "String punya banyak skill built-in: .split(), .join(), .upper(), .strip(), f-string. Coba parse 'nama,hp,mp' jadi list, lalu gabung lagi dengan format berbeda.",
+      "boss": false
+    },
+    {
+      "id": 9,
+      "name": "File I/O",
+      "rank": "B",
+      "xp": 45,
+      "prereq": 8,
+      "hint": "Simpan data ke luar program: with open('save.txt','w') as f: f.write(...). Coba tulis lalu baca kembali dengan mode 'r'. Ini caramu bikin 'save game' sungguhan.",
+      "boss": false
+    },
+    {
+      "id": 10,
+      "name": "Error Handling (try/except)",
+      "rank": "B",
+      "xp": 45,
+      "prereq": 9,
+      "hint": "Bukan game over kalau error — try/except menangkapnya. Coba: try: 1/0 except ZeroDivisionError as e: print(e). Sengaja bikin error lain (KeyError, ValueError) dan tangkap masing-masing.",
+      "boss": false
+    },
+    {
+      "id": 11,
+      "name": "OOP Dasar (Class & Object)",
+      "rank": "A",
+      "xp": 55,
+      "prereq": 10,
+      "hint": "Class = blueprint karakter. class Karakter: def __init__(self, nama, hp): self.nama=nama; self.hp=hp. Buat method serang(self). Buat 2 objek karakter berbeda dari class yang sama.",
+      "boss": false
+    },
+    {
+      "id": 12,
+      "name": "Modul & Package",
+      "rank": "A",
+      "xp": 55,
+      "prereq": 11,
+      "hint": "Pecah kode jadi file terpisah lalu import. Buat karakter.py berisi class-mu, lalu di main.py: from karakter import Karakter. Coba juga import modul bawaan seperti random atau datetime.",
+      "boss": false
+    },
+    {
+      "id": 13,
+      "name": "BOSS: Mini RPG Text-Based",
+      "rank": "S",
+      "xp": 100,
+      "prereq": 12,
+      "hint": "Fusion time — gabungkan semua skill: class untuk karakter, dictionary untuk musuh, loop untuk battle turn, try/except untuk input salah, file untuk save/load. Tidak ada hint lebih detail, ini boss fight sungguhan.",
+      "boss": true
+    }
+  ]
+}

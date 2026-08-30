@@ -1,0 +1,134 @@
+{
+  "1": {
+    "function": "info_variabel",
+    "template": "def info_variabel(nilai):\n    \"\"\"\n    Kembalikan nama tipe dari 'nilai' sebagai string:\n    'integer', 'string', 'float', 'boolean', atau 'lainnya'\n\n    Hati-hati: di Python, bool adalah 'turunan' dari int,\n    jadi urutan pengecekan tipe itu penting.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "tests": [
+          {"args": [5], "expected": "integer"},
+          {"args": ["halo"], "expected": "string"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "tests": [
+          {"args": [3.14], "expected": "float"},
+          {"args": [true], "expected": "boolean"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "tests": [
+          {"args": [[1, 2]], "expected": "lainnya"},
+          {"args": [null], "expected": "lainnya"}
+        ]
+      }
+    ]
+  },
+  "2": {
+    "function": "hitung",
+    "template": "def hitung(a, b, operator):\n    \"\"\"\n    operator berupa string: '+', '-', '*', '/', '//', '%', '**'\n    Kembalikan hasil perhitungan a dan b sesuai operator.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "tests": [
+          {"args": [4, 2, "+"], "expected": 6},
+          {"args": [4, 2, "-"], "expected": 2}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "tests": [
+          {"args": [7, 2, "//"], "expected": 3},
+          {"args": [7, 2, "%"], "expected": 1}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "tests": [
+          {"args": [2, 3, "**"], "expected": 8},
+          {"args": [7, 2, "/"], "expected": 3.5}
+        ]
+      }
+    ]
+  },
+  "3": {
+    "function": "grade_nilai",
+    "template": "def grade_nilai(nilai):\n    \"\"\"\n    nilai >= 90 -> 'A'\n    nilai >= 75 -> 'B'\n    nilai >= 60 -> 'C'\n    selain itu -> 'D'\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "tests": [
+          {"args": [95], "expected": "A"},
+          {"args": [50], "expected": "D"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "tests": [
+          {"args": [75], "expected": "B"},
+          {"args": [89], "expected": "B"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "tests": [
+          {"args": [60], "expected": "C"},
+          {"args": [59], "expected": "D"}
+        ]
+      }
+    ]
+  },
+  "4": {
+    "function": "jumlah_genap",
+    "template": "def jumlah_genap(n):\n    \"\"\"\n    Kembalikan total semua angka genap dari 1 sampai n (inklusif).\n    Kalau n < 2, kembalikan 0.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "tests": [
+          {"args": [10], "expected": 30},
+          {"args": [1], "expected": 0}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "tests": [
+          {"args": [0], "expected": 0},
+          {"args": [2], "expected": 2}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "tests": [
+          {"args": [20], "expected": 110},
+          {"args": [7], "expected": 12}
+        ]
+      }
+    ]
+  },
+  "5": {
+    "function": "list_stats",
+    "template": "def list_stats(data):\n    \"\"\"\n    Kembalikan dictionary: {'max': ..., 'min': ..., 'total': ...}\n    dari list 'data' yang berisi angka.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "tests": [
+          {"args": [[1, 2, 3]], "expected": {"max": 3, "min": 1, "total": 6}}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "tests": [
+          {"args": [[5]], "expected": {"max": 5, "min": 5, "total": 5}}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "tests": [
+          {"args": [[-1, -5, 10]], "expected": {"max": 10, "min": -5, "total": 4}}
+        ]
+      }
+    ]
+  }
+}
