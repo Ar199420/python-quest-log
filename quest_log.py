@@ -60,6 +60,12 @@ def run_verification(qid):
     """
     Jalankan file latihan user beneran (bukan self-report) dan cek
     terhadap test case bertingkat. Return dict hasil per tier.
+
+    Ada 2 mode, tergantung materi quest:
+    - "script": user cukup tulis variabel biasa (tanpa def/return).
+      Dipakai untuk quest yang belum mengajarkan fungsi.
+    - "function": user harus tulis def dengan nama & parameter tertentu.
+      Baru dipakai mulai quest yang sudah mengajarkan fungsi (Quest 7+).
     """
     challenges = load_challenges()
     challenge = challenges.get(str(qid))
@@ -77,11 +83,33 @@ def run_verification(qid):
     except Exception as e:
         return {"error": f"File kamu error saat dijalankan: {e}"}
 
+    mode = challenge.get("mode", "function")
+    tier_results = []
+
+    if mode == "script":
+        for tier in challenge["tiers"]:
+            cases = []
+            tier_passed = True
+            for check in tier["checks"]:
+                var = check["var"]
+                expected = check["expected"]
+                actual = getattr(mod, var, "<variabel tidak ditemukan>")
+                ok = actual == expected
+                tier_passed = tier_passed and ok
+                cases.append({
+                    "label": f"variabel '{var}'",
+                    "expected": expected,
+                    "actual": actual,
+                    "ok": ok,
+                })
+            tier_results.append({"name": tier["name"], "passed": tier_passed, "cases": cases})
+        return {"tiers": tier_results}
+
+    # mode == "function"
     func = getattr(mod, challenge["function"], None)
     if func is None or not callable(func):
         return {"error": f"Fungsi '{challenge['function']}' tidak ditemukan di file kamu."}
 
-    tier_results = []
     for tier in challenge["tiers"]:
         cases = []
         tier_passed = True
@@ -93,7 +121,7 @@ def run_verification(qid):
             ok = actual == case["expected"]
             tier_passed = tier_passed and ok
             cases.append({
-                "args": case["args"],
+                "label": f"input={case['args']}",
                 "expected": case["expected"],
                 "actual": actual,
                 "ok": ok,
@@ -115,9 +143,9 @@ def print_verification(result):
         for c in tier["cases"]:
             mark = "OK " if c["ok"] else "X  "
             if c["ok"]:
-                print(f"  {mark} input={c['args']} -> {c['actual']}")
+                print(f"  {mark} {c['label']} -> {c['actual']}")
             else:
-                print(f"  {mark} input={c['args']} -> hasilmu: {c['actual']}  (harusnya: {c['expected']})")
+                print(f"  {mark} {c['label']} -> hasilmu: {c['actual']}  (harusnya: {c['expected']})")
         if not tier["passed"]:
             all_passed = False
     return all_passed
@@ -239,7 +267,10 @@ def cmd_workshop(args):
     path = ensure_workshop_file(args.id, challenge)
     print(f"File latihan: {path}")
     print(f"Buka dengan: nvim {path}")
-    print(f"Isi fungsi '{challenge['function']}', lalu jalankan: verify {args.id}")
+    if challenge.get("mode") == "script":
+        print(f"Isi bagian '???' di file itu, lalu jalankan: verify {args.id}")
+    else:
+        print(f"Isi fungsi '{challenge['function']}', lalu jalankan: verify {args.id}")
 
 
 def cmd_verify(args):

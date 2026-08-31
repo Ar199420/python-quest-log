@@ -6,7 +6,7 @@
       "rank": "F",
       "xp": 20,
       "prereq": null,
-      "hint": "Variabel = wadah nilai. Coba: nama = 'Kaito' lalu print(type(nama)). Eksperimen ganti isinya dengan int, float, bool. Perhatikan apa yang berubah dari type()-nya.",
+      "hint": "Variabel = wadah nilai. Coba: nama = 'Kaito' lalu print(type(nama)). Python juga punya cara ambil nama tipe sebagai teks: type(nama).__name__ -- coba di python3 interaktif dulu sebelum masuk ke workshop.",
       "boss": false
     },
     {

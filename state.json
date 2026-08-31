@@ -1,5 +1,14 @@
 {
-  "xp": 0,
-  "progress": {},
-  "log": []
+  "xp": 20,
+  "progress": {
+    "1": "completed"
+  },
+  "log": [
+    {
+      "quest_id": 1,
+      "name": "Variabel & Tipe Data",
+      "xp": 20,
+      "time": "2026-08-31T04:59:20"
+    }
+  ]
 }

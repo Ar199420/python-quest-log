@@ -1,132 +1,138 @@
 {
   "1": {
-    "function": "info_variabel",
-    "template": "def info_variabel(nilai):\n    \"\"\"\n    Kembalikan nama tipe dari 'nilai' sebagai string:\n    'integer', 'string', 'float', 'boolean', atau 'lainnya'\n\n    Hati-hati: di Python, bool adalah 'turunan' dari int,\n    jadi urutan pengecekan tipe itu penting.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "mode": "script",
+    "template": "# Tidak perlu def/function di quest ini -- cukup variabel biasa.\n# Isi baris yang masih '???' di bawah ini.\n\n# ==== Tier Dasar ====\nnilai_a = 5\nnilai_b = \"halo\"\ntipe_a = \"???\"  # ganti dengan: type(nilai_a).__name__\ntipe_b = \"???\"  # ganti dengan: type(nilai_b).__name__\n\n# ==== Tier Menengah ====\nnilai_c = 3.14\nnilai_d = True\ntipe_c = \"???\"\ntipe_d = \"???\"\n\n# ==== Tier Lanjutan ====\nnilai_e = [1, 2]\nnilai_f = None\ntipe_e = \"???\"\ntipe_f = \"???\"\n",
     "tiers": [
       {
         "name": "Dasar",
-        "tests": [
-          {"args": [5], "expected": "integer"},
-          {"args": ["halo"], "expected": "string"}
+        "checks": [
+          {"var": "tipe_a", "expected": "int"},
+          {"var": "tipe_b", "expected": "str"}
         ]
       },
       {
         "name": "Menengah",
-        "tests": [
-          {"args": [3.14], "expected": "float"},
-          {"args": [true], "expected": "boolean"}
+        "checks": [
+          {"var": "tipe_c", "expected": "float"},
+          {"var": "tipe_d", "expected": "bool"}
         ]
       },
       {
         "name": "Lanjutan",
-        "tests": [
-          {"args": [[1, 2]], "expected": "lainnya"},
-          {"args": [null], "expected": "lainnya"}
+        "checks": [
+          {"var": "tipe_e", "expected": "list"},
+          {"var": "tipe_f", "expected": "NoneType"}
         ]
       }
     ]
   },
   "2": {
-    "function": "hitung",
-    "template": "def hitung(a, b, operator):\n    \"\"\"\n    operator berupa string: '+', '-', '*', '/', '//', '%', '**'\n    Kembalikan hasil perhitungan a dan b sesuai operator.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "mode": "script",
+    "template": "# Isi baris yang masih '???' -- cukup ekspresi matematika biasa.\n\n# ==== Tier Dasar ====\na = 4\nb = 2\nhasil_tambah = \"???\"  # ganti dengan: a + b\nhasil_kurang = \"???\"  # ganti dengan: a - b\n\n# ==== Tier Menengah ====\nc = 7\nd = 2\nhasil_bagi_bulat = \"???\"  # ganti dengan: c // d\nhasil_sisa_bagi = \"???\"   # ganti dengan: c % d\n\n# ==== Tier Lanjutan ====\ne = 2\nf = 3\nhasil_pangkat = \"???\"     # ganti dengan: e ** f\nhasil_bagi_biasa = \"???\"  # ganti dengan: c / d\n",
     "tiers": [
       {
         "name": "Dasar",
-        "tests": [
-          {"args": [4, 2, "+"], "expected": 6},
-          {"args": [4, 2, "-"], "expected": 2}
+        "checks": [
+          {"var": "hasil_tambah", "expected": 6},
+          {"var": "hasil_kurang", "expected": 2}
         ]
       },
       {
         "name": "Menengah",
-        "tests": [
-          {"args": [7, 2, "//"], "expected": 3},
-          {"args": [7, 2, "%"], "expected": 1}
+        "checks": [
+          {"var": "hasil_bagi_bulat", "expected": 3},
+          {"var": "hasil_sisa_bagi", "expected": 1}
         ]
       },
       {
         "name": "Lanjutan",
-        "tests": [
-          {"args": [2, 3, "**"], "expected": 8},
-          {"args": [7, 2, "/"], "expected": 3.5}
+        "checks": [
+          {"var": "hasil_pangkat", "expected": 8},
+          {"var": "hasil_bagi_biasa", "expected": 3.5}
         ]
       }
     ]
   },
   "3": {
-    "function": "grade_nilai",
-    "template": "def grade_nilai(nilai):\n    \"\"\"\n    nilai >= 90 -> 'A'\n    nilai >= 75 -> 'B'\n    nilai >= 60 -> 'C'\n    selain itu -> 'D'\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "mode": "script",
+    "template": "# Percabangan boleh dipakai di sini (memang itu materinya).\n# Isi bagian '???' pakai if/elif/else. Ini sengaja diulang 3x\n# dengan nilai berbeda -- rasakan capeknya nulis logika sama\n# berkali-kali, nanti Quest 7 (Fungsi) akan selesaikan masalah itu.\n\n# ==== Tier Dasar ====\nnilai_1 = 95\n# TODO: isi grade_1 pakai if/elif/else\n# >=90 -> 'A', >=75 -> 'B', >=60 -> 'C', selain itu -> 'D'\ngrade_1 = \"???\"\n\nnilai_2 = 50\ngrade_2 = \"???\"\n\n# ==== Tier Menengah ====\nnilai_3 = 75\ngrade_3 = \"???\"\n\nnilai_4 = 89\ngrade_4 = \"???\"\n\n# ==== Tier Lanjutan ====\nnilai_5 = 60\ngrade_5 = \"???\"\n\nnilai_6 = 59\ngrade_6 = \"???\"\n",
     "tiers": [
       {
         "name": "Dasar",
-        "tests": [
-          {"args": [95], "expected": "A"},
-          {"args": [50], "expected": "D"}
+        "checks": [
+          {"var": "grade_1", "expected": "A"},
+          {"var": "grade_2", "expected": "D"}
         ]
       },
       {
         "name": "Menengah",
-        "tests": [
-          {"args": [75], "expected": "B"},
-          {"args": [89], "expected": "B"}
+        "checks": [
+          {"var": "grade_3", "expected": "B"},
+          {"var": "grade_4", "expected": "B"}
         ]
       },
       {
         "name": "Lanjutan",
-        "tests": [
-          {"args": [60], "expected": "C"},
-          {"args": [59], "expected": "D"}
+        "checks": [
+          {"var": "grade_5", "expected": "C"},
+          {"var": "grade_6", "expected": "D"}
         ]
       }
     ]
   },
   "4": {
-    "function": "jumlah_genap",
-    "template": "def jumlah_genap(n):\n    \"\"\"\n    Kembalikan total semua angka genap dari 1 sampai n (inklusif).\n    Kalau n < 2, kembalikan 0.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "mode": "script",
+    "template": "# Pakai for/while di sini -- itu memang materinya.\n\n# ==== Tier Dasar ====\n# TODO: total_1 = jumlah semua angka genap dari 1 sampai 10\ntotal_1 = \"???\"\n\n# TODO: total_2 = jumlah semua angka genap dari 1 sampai 1 (harusnya 0)\ntotal_2 = \"???\"\n\n# ==== Tier Menengah ====\ntotal_3 = \"???\"  # dari 1 sampai 0 (harusnya 0, loop tidak jalan)\ntotal_4 = \"???\"  # dari 1 sampai 2 (harusnya 2)\n\n# ==== Tier Lanjutan ====\ntotal_5 = \"???\"  # dari 1 sampai 20\ntotal_6 = \"???\"  # dari 1 sampai 7\n",
     "tiers": [
       {
         "name": "Dasar",
-        "tests": [
-          {"args": [10], "expected": 30},
-          {"args": [1], "expected": 0}
+        "checks": [
+          {"var": "total_1", "expected": 30},
+          {"var": "total_2", "expected": 0}
         ]
       },
       {
         "name": "Menengah",
-        "tests": [
-          {"args": [0], "expected": 0},
-          {"args": [2], "expected": 2}
+        "checks": [
+          {"var": "total_3", "expected": 0},
+          {"var": "total_4", "expected": 2}
         ]
       },
       {
         "name": "Lanjutan",
-        "tests": [
-          {"args": [20], "expected": 110},
-          {"args": [7], "expected": 12}
+        "checks": [
+          {"var": "total_5", "expected": 110},
+          {"var": "total_6", "expected": 12}
         ]
       }
     ]
   },
   "5": {
-    "function": "list_stats",
-    "template": "def list_stats(data):\n    \"\"\"\n    Kembalikan dictionary: {'max': ..., 'min': ..., 'total': ...}\n    dari list 'data' yang berisi angka.\n    \"\"\"\n    # TODO: isi kodemu di sini\n    pass\n",
+    "mode": "script",
+    "template": "# Pakai list biasa -- tidak perlu def.\n\n# ==== Tier Dasar ====\ndata_1 = [1, 2, 3]\nmax_1 = \"???\"    # nilai terbesar di data_1\nmin_1 = \"???\"    # nilai terkecil di data_1\ntotal_1 = \"???\"  # jumlah semua isi data_1\n\n# ==== Tier Menengah ====\ndata_2 = [5]\nmax_2 = \"???\"\nmin_2 = \"???\"\ntotal_2 = \"???\"\n\n# ==== Tier Lanjutan ====\ndata_3 = [-1, -5, 10]\nmax_3 = \"???\"\nmin_3 = \"???\"\ntotal_3 = \"???\"\n",
     "tiers": [
       {
         "name": "Dasar",
-        "tests": [
-          {"args": [[1, 2, 3]], "expected": {"max": 3, "min": 1, "total": 6}}
+        "checks": [
+          {"var": "max_1", "expected": 3},
+          {"var": "min_1", "expected": 1},
+          {"var": "total_1", "expected": 6}
         ]
       },
       {
         "name": "Menengah",
-        "tests": [
-          {"args": [[5]], "expected": {"max": 5, "min": 5, "total": 5}}
+        "checks": [
+          {"var": "max_2", "expected": 5},
+          {"var": "min_2", "expected": 5},
+          {"var": "total_2", "expected": 5}
         ]
       },
       {
         "name": "Lanjutan",
-        "tests": [
-          {"args": [[-1, -5, 10]], "expected": {"max": 10, "min": -5, "total": 4}}
+        "checks": [
+          {"var": "max_3", "expected": 10},
+          {"var": "min_3", "expected": -5},
+          {"var": "total_3", "expected": 4}
         ]
       }
     ]

@@ -70,9 +70,9 @@ Setelah itu, tiap `complete` akan auto-commit lokal. Kamu tinggal `git push` kap
 ## Character Sheet
 
 - **Level:** 1
-- **XP:** 0
-- **Progress:** 0/13 quest selesai
+- **XP:** 20
+- **Progress:** 1/13 quest selesai
 
 **Skill dikuasai:**
-- _(belum ada quest yang selesai)_
+- [x] Variabel & Tipe Data (Rank F)
 <!-- CHARACTER_SHEET_END -->
