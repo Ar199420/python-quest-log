@@ -116,6 +116,87 @@
       "prereq": 12,
       "hint": "Fusion time — gabungkan semua skill: class untuk karakter, dictionary untuk musuh, loop untuk battle turn, try/except untuk input salah, file untuk save/load. Tidak ada hint lebih detail, ini boss fight sungguhan.",
       "boss": true
+    },
+    {
+      "id": 14,
+      "name": "[HTML] Struktur Dokumen",
+      "rank": "F",
+      "xp": 25,
+      "prereq": 13,
+      "hint": "Setiap halaman HTML punya kerangka wajib: <html>, <head>, <body>. Di dalam <head> ada <title> (judul tab browser) dan <meta charset=\"UTF-8\"> (biar karakter aneh tidak berantakan). Coba lengkapi kerangkanya.",
+      "boss": false
+    },
+    {
+      "id": 15,
+      "name": "[HTML] Tag Semantik & Heading",
+      "rank": "E",
+      "xp": 30,
+      "prereq": 14,
+      "hint": "Selain <div> generik, HTML punya tag yang 'menjelaskan diri sendiri': <header>, <nav>, <main>, <footer>. Ini bikin halamanmu lebih mudah dibaca mesin (dan manusia). Tambahkan juga <h1> dan <p> untuk konten.",
+      "boss": false
+    },
+    {
+      "id": 16,
+      "name": "[HTML] List & Link",
+      "rank": "E",
+      "xp": 30,
+      "prereq": 15,
+      "hint": "<ul>/<ol> untuk daftar (unordered/ordered), isinya <li>. <a href=\"...\">teks</a> untuk link. Coba buat daftar minimal 3 item dan satu link ke halaman lain.",
+      "boss": false
+    },
+    {
+      "id": 17,
+      "name": "[HTML] Gambar & Tabel",
+      "rank": "D",
+      "xp": 35,
+      "prereq": 16,
+      "hint": "<img src=\"...\" alt=\"...\"> — alt WAJIB diisi (buat aksesibilitas & SEO). <table> berisi <tr> (baris) dan <td> (sel). Coba buat tabel sederhana 2 baris.",
+      "boss": false
+    },
+    {
+      "id": 18,
+      "name": "[HTML] Form Dasar",
+      "rank": "D",
+      "xp": 35,
+      "prereq": 17,
+      "hint": "<form> membungkus input-input. <input type=\"text\"> untuk teks bebas, <input type=\"submit\"> atau <button> untuk tombol kirim. Ini fondasi penting sebelum belajar Flask nanti.",
+      "boss": false
+    },
+    {
+      "id": 19,
+      "name": "[CSS] Styling Internal",
+      "rank": "C",
+      "xp": 40,
+      "prereq": 18,
+      "hint": "Taruh <style>...</style> di dalam <head>. Coba ubah warna teks (color) dan warna latar (background-color) pakai selector CSS sederhana seperti body { ... } atau h1 { ... }.",
+      "boss": false
+    },
+    {
+      "id": 20,
+      "name": "[CSS] Box Model",
+      "rank": "C",
+      "xp": 40,
+      "prereq": 19,
+      "hint": "Tiap elemen HTML itu 'kotak': ada padding (jarak dalam), border (garis pinggir), margin (jarak luar). Coba atur ketiganya di satu elemen dan lihat bedanya.",
+      "boss": false
+    },
+    {
+      "id": 21,
+      "name": "[CSS] Flexbox Dasar",
+      "rank": "B",
+      "xp": 45,
+      "prereq": 20,
+      "hint": "display: flex bikin elemen di dalamnya bisa disusun horizontal otomatis. justify-content mengatur jarak horizontal, align-items mengatur posisi vertikal. Coba bikin 3 kotak sejajar rapi.",
+      "boss": false
+    },
+    {
+      "id": 22,
+      "name": "BOSS ACT 2: Halaman Profil Sederhana",
+      "rank": "A",
+      "xp": 90,
+      "prereq": 21,
+      "hint": "Gabungkan semuanya: header/nav, heading, gambar dengan alt, form kontak, dan sedikit CSS flexbox untuk layout. Tidak ada hint detail lagi — desain halaman profil versimu sendiri.",
+      "boss": true
     }
   ]
 }

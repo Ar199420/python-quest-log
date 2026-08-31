@@ -136,5 +136,229 @@
         ]
       }
     ]
+  },
+  "14": {
+    "mode": "html",
+    "template": "<!-- TODO: lengkapi kerangka HTML di bawah ini -->\n<!DOCTYPE html>\n<html>\n<head>\n    <!-- TODO: tambahkan <title>judul bebas</title> -->\n    <!-- TODO: tambahkan <meta charset=\"UTF-8\"> -->\n</head>\n<body>\n    <!-- isi halaman nanti di quest berikutnya -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "head", "label": "tag <head> ada"},
+          {"type": "tag_exists", "tag": "body", "label": "tag <body> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_has_text", "tag": "title", "label": "<title> punya isi teks"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "tag_attr_equals", "tag": "meta", "attr": "charset", "value": "UTF-8", "label": "<meta charset=\"UTF-8\"> ada"}
+        ]
+      }
+    ]
+  },
+  "15": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Halamanku</title>\n    <meta charset=\"UTF-8\">\n</head>\n<body>\n    <!-- TODO: tambahkan <header>, <nav>, <h1>, <p>, dan <main> -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "h1", "label": "<h1> ada"},
+          {"type": "tag_exists", "tag": "p", "label": "<p> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_exists", "tag": "header", "label": "<header> ada"},
+          {"type": "tag_exists", "tag": "nav", "label": "<nav> ada"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "tag_exists", "tag": "main", "label": "<main> ada"},
+          {"type": "tag_exists", "tag": "footer", "label": "<footer> ada"}
+        ]
+      }
+    ]
+  },
+  "16": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head><title>Daftar</title><meta charset=\"UTF-8\"></head>\n<body>\n    <!-- TODO: buat <ul> dengan minimal 3 <li>, satu <ol>, dan satu <a href=...> -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "ul", "label": "<ul> ada"},
+          {"type": "tag_count_min", "tag": "li", "min": 3, "label": "minimal 3 <li>"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_exists", "tag": "ol", "label": "<ol> ada"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "tag_attr_exists", "tag": "a", "attr": "href", "label": "<a href=...> ada"}
+        ]
+      }
+    ]
+  },
+  "17": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head><title>Galeri</title><meta charset=\"UTF-8\"></head>\n<body>\n    <!-- TODO: tambahkan <img src=... alt=...> dan <table> dengan minimal 2 <tr> -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_attr_exists", "tag": "img", "attr": "src", "label": "<img src=...> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_attr_exists", "tag": "img", "attr": "alt", "label": "<img alt=...> ada"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "tag_exists", "tag": "table", "label": "<table> ada"},
+          {"type": "tag_count_min", "tag": "tr", "min": 2, "label": "minimal 2 <tr>"}
+        ]
+      }
+    ]
+  },
+  "18": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head><title>Kontak</title><meta charset=\"UTF-8\"></head>\n<body>\n    <!-- TODO: buat <form> dengan <input type=\"text\"> dan tombol submit -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "form", "label": "<form> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_attr_equals", "tag": "input", "attr": "type", "value": "text", "label": "<input type=\"text\"> ada"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "tag_attr_equals", "tag": "input", "attr": "type", "value": "submit", "label": "<input type=\"submit\"> atau <button> ada"}
+        ]
+      }
+    ]
+  },
+  "19": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Styling</title>\n    <meta charset=\"UTF-8\">\n    <style>\n        /* TODO: isi selector body { ... } dan h1 { ... } */\n    </style>\n</head>\n<body>\n    <h1>Judul</h1>\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "style", "label": "<style> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "css_contains", "property": "color", "value": "", "label": "ada properti color diisi"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "css_contains", "properties": ["background", "background-color"], "value": "", "label": "ada properti background/background-color diisi"}
+        ]
+      }
+    ]
+  },
+  "20": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Box Model</title>\n    <meta charset=\"UTF-8\">\n    <style>\n        /* TODO: isi padding, margin, border pada satu selector */\n    </style>\n</head>\n<body>\n    <div>Kotak</div>\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "css_contains", "property": "padding", "value": "", "label": "ada properti padding diisi"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "css_contains", "property": "margin", "value": "", "label": "ada properti margin diisi"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "css_contains", "property": "border", "value": "", "label": "ada properti border diisi"}
+        ]
+      }
+    ]
+  },
+  "21": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Flexbox</title>\n    <meta charset=\"UTF-8\">\n    <style>\n        .kontainer {\n            /* TODO: display: flex; justify-content: ...; align-items: ...; */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"kontainer\">\n        <div>1</div><div>2</div><div>3</div>\n    </div>\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "css_contains", "property": "display", "value": "flex", "label": "display: flex ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "css_contains", "property": "justify-content", "value": "", "label": "justify-content diisi"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "css_contains", "property": "align-items", "value": "", "label": "align-items diisi"}
+        ]
+      }
+    ]
+  },
+  "22": {
+    "mode": "html",
+    "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Profilku</title>\n    <meta charset=\"UTF-8\">\n    <style>\n        /* bebas berkreasi, minimal ada display: flex di suatu tempat */\n    </style>\n</head>\n<body>\n    <!-- TODO: header/nav, h1, img alt, form, dan layout flex -->\n</body>\n</html>\n",
+    "tiers": [
+      {
+        "name": "Dasar",
+        "checks": [
+          {"type": "tag_exists", "tag": "header", "label": "<header> atau <nav> ada"},
+          {"type": "tag_exists", "tag": "h1", "label": "<h1> ada"}
+        ]
+      },
+      {
+        "name": "Menengah",
+        "checks": [
+          {"type": "tag_attr_exists", "tag": "img", "attr": "alt", "label": "gambar dengan alt ada"},
+          {"type": "tag_exists", "tag": "form", "label": "<form> ada"}
+        ]
+      },
+      {
+        "name": "Lanjutan",
+        "checks": [
+          {"type": "css_contains", "property": "display", "value": "flex", "label": "layout flexbox dipakai"}
+        ]
+      }
+    ]
   }
 }

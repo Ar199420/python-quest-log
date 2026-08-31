@@ -14,9 +14,11 @@ Penggunaan cepat:
 
 import importlib.util
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime
+from html.parser import HTMLParser
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -44,13 +46,16 @@ def load_challenges():
         return json.load(f)
 
 
-def workshop_path(qid):
-    return WORKSHOP_DIR / f"quest_{qid:02d}.py"
+def workshop_path(qid, challenges=None):
+    challenges = challenges or load_challenges()
+    mode = challenges.get(str(qid), {}).get("mode", "function")
+    ext = "html" if mode == "html" else "py"
+    return WORKSHOP_DIR / f"quest_{qid:02d}.{ext}"
 
 
 def ensure_workshop_file(qid, challenge):
     WORKSHOP_DIR.mkdir(exist_ok=True)
-    path = workshop_path(qid)
+    path = workshop_path(qid, {str(qid): challenge})
     if not path.exists():
         path.write_text(challenge["template"], encoding="utf-8")
     return path
@@ -72,9 +77,35 @@ def run_verification(qid):
     if not challenge:
         return None  # quest ini belum punya verifikasi otomatis
 
-    path = workshop_path(qid)
+    path = workshop_path(qid, challenges)
     if not path.exists():
         return {"error": f"File latihan belum ada. Jalankan: workshop {qid}"}
+
+    mode = challenge.get("mode", "function")
+
+    if mode == "html":
+        raw_text = path.read_text(encoding="utf-8")
+        analyzer = SimpleHTMLAnalyzer()
+        try:
+            analyzer.feed(raw_text)
+        except Exception as e:
+            return {"error": f"HTML tidak bisa diparse: {e}"}
+
+        tier_results = []
+        for tier in challenge["tiers"]:
+            cases = []
+            tier_passed = True
+            for rule in tier["checks"]:
+                ok = check_html_rule(analyzer, raw_text, rule)
+                tier_passed = tier_passed and ok
+                cases.append({
+                    "label": rule.get("label", str(rule)),
+                    "expected": "ada / sesuai",
+                    "actual": "ditemukan" if ok else "TIDAK ditemukan",
+                    "ok": ok,
+                })
+            tier_results.append({"name": tier["name"], "passed": tier_passed, "cases": cases})
+        return {"tiers": tier_results}
 
     spec = importlib.util.spec_from_file_location(f"quest_{qid:02d}", path)
     mod = importlib.util.module_from_spec(spec)
@@ -149,6 +180,58 @@ def print_verification(result):
         if not tier["passed"]:
             all_passed = False
     return all_passed
+
+
+class SimpleHTMLAnalyzer(HTMLParser):
+    """Parser HTML minimal: kumpulkan semua tag, atributnya, dan teks di dalamnya."""
+
+    def __init__(self):
+        super().__init__()
+        self.tags = []
+        self._stack = []
+
+    def handle_starttag(self, tag, attrs):
+        node = {"tag": tag, "attrs": dict(attrs), "text": ""}
+        self.tags.append(node)
+        self._stack.append(node)
+
+    def handle_startendtag(self, tag, attrs):
+        self.tags.append({"tag": tag, "attrs": dict(attrs), "text": ""})
+
+    def handle_endtag(self, tag):
+        if self._stack:
+            self._stack.pop()
+
+    def handle_data(self, data):
+        if self._stack:
+            self._stack[-1]["text"] += data
+
+
+def check_html_rule(analyzer, raw_text, rule):
+    rtype = rule["type"]
+    if rtype == "tag_exists":
+        return any(t["tag"] == rule["tag"] for t in analyzer.tags)
+    if rtype == "tag_attr_exists":
+        return any(t["tag"] == rule["tag"] and rule["attr"] in t["attrs"] for t in analyzer.tags)
+    if rtype == "tag_attr_equals":
+        return any(
+            t["tag"] == rule["tag"] and (t["attrs"].get(rule["attr"]) or "").lower() == rule["value"].lower()
+            for t in analyzer.tags
+        )
+    if rtype == "tag_count_min":
+        return sum(1 for t in analyzer.tags if t["tag"] == rule["tag"]) >= rule["min"]
+    if rtype == "tag_has_text":
+        return any(t["tag"] == rule["tag"] and t["text"].strip() for t in analyzer.tags)
+    if rtype == "css_contains":
+        value = rule.get("value", "")
+        props = rule.get("properties") or [rule["property"]]
+        prop_pattern = "(?:" + "|".join(re.escape(p) for p in props) + ")"
+        if value:
+            pattern = prop_pattern + r"\s*:\s*[^;}\"']*" + re.escape(value)
+        else:
+            pattern = prop_pattern + r"\s*:\s*[^;}\"'\s][^;}\"']*"
+        return re.search(pattern, raw_text, re.IGNORECASE) is not None
+    return False
 
 
 def load_state():
@@ -267,7 +350,9 @@ def cmd_workshop(args):
     path = ensure_workshop_file(args.id, challenge)
     print(f"File latihan: {path}")
     print(f"Buka dengan: nvim {path}")
-    if challenge.get("mode") == "script":
+    if challenge.get("mode") == "html":
+        print(f"Lengkapi HTML/CSS-nya, lalu jalankan: verify {args.id}")
+    elif challenge.get("mode") == "script":
         print(f"Isi bagian '???' di file itu, lalu jalankan: verify {args.id}")
     else:
         print(f"Isi fungsi '{challenge['function']}', lalu jalankan: verify {args.id}")
