@@ -1,7 +1,8 @@
 {
-  "xp": 20,
+  "xp": 40,
   "progress": {
-    "1": "completed"
+    "1": "completed",
+    "2": "completed"
   },
   "log": [
     {
@@ -9,6 +10,12 @@
       "name": "Variabel & Tipe Data",
       "xp": 20,
       "time": "2026-08-31T04:59:20"
+    },
+    {
+      "quest_id": 2,
+      "name": "Operator & Ekspresi",
+      "xp": 20,
+      "time": "2026-08-31T11:40:37"
     }
   ]
 }
