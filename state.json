@@ -1,9 +1,10 @@
 {
-  "xp": 70,
+  "xp": 100,
   "progress": {
     "1": "completed",
     "2": "completed",
-    "3": "completed"
+    "3": "completed",
+    "4": "completed"
   },
   "log": [
     {
@@ -23,6 +24,12 @@
       "name": "Percabangan (if/elif/else)",
       "xp": 30,
       "time": "2026-08-31T14:32:20"
+    },
+    {
+      "quest_id": 4,
+      "name": "Perulangan (for & while)",
+      "xp": 30,
+      "time": "2026-08-31T23:43:21"
     }
   ]
 }
