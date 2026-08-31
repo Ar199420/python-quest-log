@@ -1,8 +1,9 @@
 {
-  "xp": 40,
+  "xp": 70,
   "progress": {
     "1": "completed",
-    "2": "completed"
+    "2": "completed",
+    "3": "completed"
   },
   "log": [
     {
@@ -16,6 +17,12 @@
       "name": "Operator & Ekspresi",
       "xp": 20,
       "time": "2026-08-31T11:40:37"
+    },
+    {
+      "quest_id": 3,
+      "name": "Percabangan (if/elif/else)",
+      "xp": 30,
+      "time": "2026-08-31T14:32:20"
     }
   ]
 }
