@@ -125,7 +125,10 @@ def run_verification(qid):
                 var = check["var"]
                 expected = check["expected"]
                 actual = getattr(mod, var, "<variabel tidak ditemukan>")
-                ok = actual == expected
+                if isinstance(actual, set):
+                    ok = sorted(actual, key=str) == sorted(expected, key=str)
+                else:
+                    ok = actual == expected
                 tier_passed = tier_passed and ok
                 cases.append({
                     "label": f"variabel '{var}'",
@@ -136,23 +139,38 @@ def run_verification(qid):
             tier_results.append({"name": tier["name"], "passed": tier_passed, "cases": cases})
         return {"tiers": tier_results}
 
-    # mode == "function"
-    func = getattr(mod, challenge["function"], None)
-    if func is None or not callable(func):
-        return {"error": f"Fungsi '{challenge['function']}' tidak ditemukan di file kamu."}
-
+    # mode == "function" -- setiap tier boleh punya nama fungsi sendiri
+    # (default ke challenge["function"] kalau tier tidak menentukan)
     for tier in challenge["tiers"]:
+        func_name = tier.get("function", challenge.get("function"))
+        func = getattr(mod, func_name, None)
         cases = []
         tier_passed = True
+        if func is None or not callable(func):
+            tier_results.append({
+                "name": tier["name"],
+                "passed": False,
+                "cases": [{
+                    "label": f"fungsi '{func_name}'",
+                    "expected": "ada di file kamu",
+                    "actual": "TIDAK ditemukan",
+                    "ok": False,
+                }],
+            })
+            continue
         for case in tier["tests"]:
             try:
                 actual = func(*case["args"])
             except Exception as e:
                 actual = f"ERROR: {e}"
-            ok = actual == case["expected"]
+            expected = case["expected"]
+            if isinstance(actual, tuple) and isinstance(expected, list):
+                ok = list(actual) == expected
+            else:
+                ok = actual == expected
             tier_passed = tier_passed and ok
             cases.append({
-                "label": f"input={case['args']}",
+                "label": f"{func_name}{tuple(case['args'])}",
                 "expected": case["expected"],
                 "actual": actual,
                 "ok": ok,
@@ -160,6 +178,7 @@ def run_verification(qid):
         tier_results.append({"name": tier["name"], "passed": tier_passed, "cases": cases})
 
     return {"tiers": tier_results}
+
 
 
 def print_verification(result):
@@ -355,7 +374,7 @@ def cmd_workshop(args):
     elif challenge.get("mode") == "script":
         print(f"Isi bagian '???' di file itu, lalu jalankan: verify {args.id}")
     else:
-        print(f"Isi fungsi '{challenge['function']}', lalu jalankan: verify {args.id}")
+        print(f"Lengkapi fungsi-fungsi di file itu, lalu jalankan: verify {args.id}")
 
 
 def cmd_verify(args):
